@@ -1,0 +1,70 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<html>
+<head>
+    <title>장바구니 수정</title>
+</head>
+<body>
+    <h2>장바구니 수정</h2>
+
+    <form action="/update-cart" method="post">
+        <fieldset>
+            <legend>상품 1</legend>
+            <input type="hidden" name="productId" value="101" />
+            수량: <input type="number" name="quantity" value="2" /><br/>
+            옵션: <input type="text" name="option" value="Red" />
+        </fieldset>
+
+        <fieldset>
+            <legend>상품 2</legend>
+            <input type="hidden" name="productId" value="102" />
+            수량: <input type="number" name="quantity" value="1" /><br/>
+            옵션: <input type="text" name="option" value="Blue" />
+        </fieldset>
+
+        <button type="submit">업데이트</button>
+    </form>
+</body>
+</html>
+
+
+
+///////////////
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
+import java.io.IOException;
+import java.util.*;
+
+@WebServlet("/update-cart")
+public class UpdateCartServlet extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+        throws ServletException, IOException {
+
+        String[] productIds = req.getParameterValues("productId");
+        String[] quantities = req.getParameterValues("quantity");
+        String[] options = req.getParameterValues("option");
+
+        List<CartItem> cartItems = new ArrayList<>();
+
+        for (int i = 0; i < productIds.length; i++) {
+            String pid = productIds[i];
+            int qty = Integer.parseInt(quantities[i]);
+            String opt = options[i];
+
+            CartItem item = new CartItem(pid, qty, opt);
+            cartItems.add(item);
+        }
+
+        // 디버깅용 출력
+        for (CartItem item : cartItems) {
+            System.out.println("상품 ID: " + item.getProductId());
+            System.out.println("수량: " + item.getQuantity());
+            System.out.println("옵션: " + item.getOption());
+            System.out.println("----");
+        }
+
+        // 다음 페이지로 포워딩 or 리디렉트
+        resp.sendRedirect("cartForm.jsp");
+    }
+}
