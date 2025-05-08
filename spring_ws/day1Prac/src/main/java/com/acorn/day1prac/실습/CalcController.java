@@ -10,7 +10,7 @@ public class CalcController {
 
 	//1. 두 수를 사용자로부터 입력받아 사칙연산해서 제공하기
 	
-	//두 수 입력받기? ㅜㅜ 모르겠어
+	//두 수 입력받기? ㅜ
 	@RequestMapping(value="/calcForm", method=RequestMethod.GET)
 	public String calcForm() {
 		return "calc";
