@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+ 
+ 
+ <!-- 생성자 주입 -->
+    <bean id="monday" class="com.acorn.prac.DayCalendar">
+        <constructor-arg value="월"/>
+        <constructor-arg value="잠자기"/>
+    </bean>
+    <bean id="tuesday" class="com.acorn.prac.DayCalendar">
+        <constructor-arg value="화"/>
+        <constructor-arg value="유튜브보기"/>
+    </bean>
+    <bean id="wednesday" class="com.acorn.prac.DayCalendar">
+        <constructor-arg value="수"/>
+        <constructor-arg value="외식하기"/>
+    </bean>    
+    <bean id="thursday" class="com.acorn.prac.DayCalendar">
+        <constructor-arg value="목"/>
+        <constructor-arg value="공부하기"/>
+    </bean>    
+    <bean id="friday" class="com.acorn.prac.DayCalendar">
+        <constructor-arg value="금"/>
+        <constructor-arg value="운동하기"/>
+    </bean>    
+    <bean id="saturday" class="com.acorn.prac.DayCalendar">
+        <constructor-arg value="토"/>
+        <constructor-arg value="하루종일잠자기"/>
+    </bean>    
+    <bean id="sunday" class="com.acorn.prac.DayCalendar">
+        <constructor-arg value="일"/>
+        <constructor-arg value="도시락싸기"/>
+    </bean>
+
+<!-- 세터 주입  -->
+<!--  
+	<bean id="monday" class="com.acorn.prac.DayCalendar">
+		<property name="day" value="월" />
+		<property name="todo" value="1" />
+	</bean>
+	<bean id="tuesday" class="com.acorn.prac.DayCalendar">
+		<property name="day" value="화"/>
+		<property name="todo" value="2" />
+	</bean>
+	<bean id="wednesday" class="com.acorn.prac.DayCalendar">
+		<property name="day" value="수" />
+		<property name="todo" value="3" />
+	</bean>
+	<bean id="thursday" class="com.acorn.prac.DayCalendar">
+		<property name="day" value="목" />
+		<property name="todo" value="4" />
+	</bean>
+	<bean id="friday" class="com.acorn.prac.DayCalendar">
+		<property name="day" value="금" />
+		<property name="todo" value="5" />
+	</bean>
+	<bean id="saturday" class="com.acorn.prac.DayCalendar">
+		<property name="day" value="토" />
+		<property name="todo" value="6" />
+	</bean>
+	<bean id="sunday" class="com.acorn.prac.DayCalendar">
+		<property name="day" value="일" />
+		<property name="todo" value="7" />
+	</bean>
+-->
+    <!-- 7일 객체 배열(List) -->
+    <bean id="calendar" class="com.acorn.prac.Calendar">
+        <constructor-arg>
+            <list>
+                <ref bean="monday"/>
+                <ref bean="tuesday"/>
+                <ref bean="wednesday"/>
+                <ref bean="thursday"/>
+                <ref bean="friday"/>
+                <ref bean="saturday"/>
+                <ref bean="sunday"/>
+            </list>
+        </constructor-arg>
+    </bean>
+    <bean id="calendarController" class="com.acorn.prac.CalendarController">
+		<constructor-arg ref="calendar"/>
+	</bean>
+</beans>

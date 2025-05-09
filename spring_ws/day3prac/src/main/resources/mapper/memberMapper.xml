@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--
+ID      VARCHAR2(10) 
+PWD     VARCHAR2(10) 
+NAME    VARCHAR2(10) 
+-->
+
+<mapper namespace="a">
+      
+      
+    <select id="selectAll" resultType="Member">
+        SELECT *
+        FROM memberacorn       
+    </select>
+    
+    <select id="selectAll2" resultType="map">
+        SELECT *
+        FROM memberacorn       
+    </select>
+    
+    
+    <select id="selectOne" parameterType="String" resultType="Member">
+        SELECT *
+        FROM memberacorn where id=#{id}
+    </select>
+    
+    
+    <insert id="insert" parameterType="Member">
+    	insert into memberacorn(id, pwd ,name)
+    	values(#{id}, #{pwd}, #{name})
+    </insert>
+    
+    
+    <update id="update" parameterType="Member">
+    	update memberacorn
+    	set pwd=#{pwd}, name=#{name}
+    	where id=#{id}
+    </update>
+    
+    
+    <delete id="deleteOne" parameterType="String">
+    	delete from memberacorn 
+    	where id=#{id}
+    </delete>
+    
+    <delete id="deleteAll">
+    	delete from memberacorn
+    </delete>
+    
+</mapper>

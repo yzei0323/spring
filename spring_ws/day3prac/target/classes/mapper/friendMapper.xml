@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--
+NAME     VARCHAR2(10) 
+PWD      VARCHAR2(10) 
+BIRTH    VARCHAR2(4)  
+-->
+
+<mapper namespace="b">
+      
+      
+    <select id="selectAll" resultType="Friend">
+        SELECT *
+        FROM friend      
+    </select>
+    
+    <select id="selectAll2" resultType="map">
+        SELECT *
+        FROM friend       
+    </select>
+    
+    
+    <select id="selectOne" parameterType="String" resultType="Friend">
+        SELECT *
+        FROM friend where name=#{name}
+    </select>
+    
+    
+    <insert id="insert" parameterType="Friend">
+    	insert into friend(name, pwd ,birth)
+    	values(#{name}, #{pwd}, #{birth})
+    </insert>
+    
+    
+    <update id="update" parameterType="Friend">
+    	update friend
+    	set pwd=#{pwd}, birth=#{birth}
+    	where name=#{name}
+    </update>
+    
+    
+    <delete id="deleteOne" parameterType="String">
+    	delete from friend 
+    	where name=#{name}
+    </delete>
+    
+    <delete id="deleteAll">
+    	delete from friend
+    </delete>
+    
+</mapper>

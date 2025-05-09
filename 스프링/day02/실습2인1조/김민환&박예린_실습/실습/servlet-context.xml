@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- @Controller, @Service 등을 자동 스캔 -->
+    <context:component-scan base-package="day2Prac.실습" />
+
+    <!-- 어노테이션 기반 MVC 활성화 -->
+    <mvc:annotation-driven />
+
+    <!-- 정적 리소스 핸들링 -->
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+
+    <!-- View Resolver 설정 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <!-- BMI 관련 Bean 등록 -->
+    <bean id="calculator" class="day2Prac.실습.BMICalculatorImpl"/>
+    <bean id="category" class="day2Prac.실습.BMICategoryImpl"/>
+    <bean id="program" class="day2Prac.실습.BMIProgram">
+        <constructor-arg ref="calculator"/>
+        <constructor-arg ref="category"/>
+    </bean>
+</beans>

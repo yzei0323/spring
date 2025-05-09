@@ -66,6 +66,7 @@
 		<property name="todo" value="7" />
 	</bean>
 -->
+
     <!-- 7일 객체 배열(List) -->
     <bean id="calendar" class="com.acorn.prac.Calendar">
         <constructor-arg>

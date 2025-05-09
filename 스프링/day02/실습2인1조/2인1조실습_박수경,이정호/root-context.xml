@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 주입 -->
+	<bean id="calc" class="com.acorn.prac2.xml.CalcServiceX"></bean>
+	
+	<!-- 호출 -->
+	<bean id="program" class="com.acorn.prac2.xml.CalcControllerX">
+		<constructor-arg ref="calc"></constructor-arg>
+	</bean>
+		
+</beans>
