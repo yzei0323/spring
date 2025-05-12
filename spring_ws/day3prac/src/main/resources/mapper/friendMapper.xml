@@ -17,6 +17,7 @@ BIRTH    VARCHAR2(4)
         FROM friend      
     </select>
     
+    <!--  
     <select id="selectAll2" resultType="map">
         SELECT *
         FROM friend       
@@ -50,5 +51,5 @@ BIRTH    VARCHAR2(4)
     <delete id="deleteAll">
     	delete from friend
     </delete>
-    
+    -->
 </mapper>
